@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>Nishant</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+<style>
+    body {
+  display: grid;
+  min-height: 90vh;
+  place-items: center;
+}
+
+div {
+  display: flex;
+  gap: 1rem;
+}
+
+:root {
+  --background-color: #fcfaf2;
+  --text-color: #3d3d3d;
+  
+  background: var(--background-color);
+  color: var(--text-color);
+}
+
+:root[data-color-scheme="dark"] {
+  --accent-color: #f2eac9;
+  --border-color: #613fe8;
+  --text-color: white;
+  --background-color: black;
+}
+
+:root[data-color-scheme="light"] {
+  --accent-color: #f2eac9;
+  --border-color: #613fe8;
+  --text-color: black;
+  --background-color: white;
+}
+
+.button {
+  --size: 4rem;
+  
+  border: none;
+  display: grid;
+  -moz-appearance: none;
+       appearance: none;
+  -webkit-appearance: none;
+  position: relative;
+  line-height: 0;
+  box-sizing: border-box;
+  inline-size: var(--size);
+  block-size: var(--size);
+  border: calc(var(--size) / 20) solid #f2eac9;
+  border-radius: 100%;
+  color: #613fe8;
+  background: white;
+  padding: calc(var(--size) / 8);
+  transition: border-color 0.2s;
+}
+
+.button:not([disabled]) {
+  cursor: pointer;
+}
+
+.button:not([disabled]):hover,
+.button[aria-selected="true"] {
+ border-color: #613fe8;
+}
+
+.visually-hidden {
+  clip: rect(1px, 1px, 1px, 1px);
+  inline-size: 1px;
+  block-size: 1px;
+  overflow: hidden;
+  position: absolute;
+}
+
+.button svg {
+  inline-size: 100%;
+  block-size: 100%;
+  pointer-events: none;
+}
+
+</style>
+
+</head>
+<body>
+<!-- partial:index.partial.html -->
+<div>  
+  <theme-button>
+    <button class="button">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false">
+        <circle cx="12" cy="8" r="3.25" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"></circle>
+        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M6.8475 19.25H17.1525C18.2944 19.25 19.174 18.2681 18.6408 17.2584C17.8563 15.7731 16.068 14 12 14C7.93201 14 6.14367 15.7731 5.35924 17.2584C4.82597 18.2681 5.70558 19.25 6.8475 19.25Z"></path>
+      </svg>
+      <span class="visually-hidden">Default</span>
+    </button>
+  </theme-button>
+
+  <theme-button theme="light" url="./themes/light.css">
+    <button class="button">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false">
+        <circle cx="12" cy="12" r="3.25" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"></circle>
+        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 2.75v1.5M17.25 6.75l-1.184 1.184M21.25 12h-1.5M17.25 17.25l-1.184-1.184M12 19.75v1.5M7.934 16.066 6.75 17.25M4.25 12h-1.5M7.934 7.934 6.75 6.75"></path>
+
+      </svg>
+      <span class="visually-hidden">Light</span>
+    </button>
+  </theme-button>
+
+  <theme-button theme="dark" url="./themes/dark.css">
+    <button class="button">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false">
+        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M18.25 15.75c-1.015.54-2.02.5-3.25.5A7.25 7.25 0 0 1 7.75 9c0-1.23-.04-2.235.5-3.25-2.289 1.219-3.5 3.476-3.5 6.25A7.25 7.25 0 0 0 12 19.25c2.774 0 5.031-1.211 6.25-3.5ZM16 4.75C16 6.96 14.96 9 12.75 9 14.96 9 16 11.04 16 13.25 16 11.04 17.04 9 19.25 9 17.04 9 16 6.96 16 4.75Z"></path>
+      </svg>
+      <span class="visually-hidden">Dark</span>
+    </button>
+  </theme-button>
+</div>
+
+<style>
+  /* Bit of inline CSS to prevent non-interactive UI from appearing */
+  :not(:defined) {
+    display: none
+  }
+</style>
+<!-- partial -->
+  <script>
+      const template = document.createElement("template");
+
+template.innerHTML = `
+  <slot>
+    <button>Set theme</button>
+  </slot>
+`;
+
+class ThemeButton extends HTMLElement {
+  constructor() {
+    super();
+    this.attachShadow({ mode: "open" });
+    this.shadowRoot.appendChild(template.content.cloneNode(true));
+  }
+
+  connectedCallback() {
+    if (this.label) {
+      this.shadowRoot.querySelector("button").innerHTML = this.label;
+    }
+
+    const currentTheme = window.localStorage.getItem("data-color-scheme");
+
+    const link = this.createLink();
+
+    if (currentTheme == this.theme) {
+      this.setTheme(link);
+    }
+
+    this.button.addEventListener("click", () => this.setTheme(link));
+  }
+
+  createLink() {
+    let link;
+
+    const { url, theme } = this;
+
+    if (url) {
+      link = document.createElement("link");
+      link.setAttribute("rel", "stylesheet");
+      link.setAttribute("href", url);
+      link.setAttribute("slot", "link");
+      if (theme) {
+        link.setAttribute("title", theme);
+      }
+      link.setAttribute("disabled", "");
+      this.appendChild(link);
+    }
+    return link;
+  }
+
+  get allButtons() {
+    return document.documentElement.querySelectorAll("theme-button button");
+  }
+
+  get allLinks() {
+    return document.documentElement.querySelectorAll("theme-button link");
+  }
+
+  get theme() {
+    return this.getAttribute("theme");
+  }
+
+  get url() {
+    return this.getAttribute("url");
+  }
+
+  clearTheme() {
+    const { allLinks, allButtons } = this;
+
+    allLinks.forEach((link) => link.setAttribute("disabled", ""));
+    allButtons.forEach((button) => button.setAttribute("aria-selected", false));
+
+    window.localStorage.removeItem("data-color-scheme");
+    document.documentElement.removeAttribute("data-color-scheme"); // Remove if using theme files
+  }
+
+  setTheme(link) {
+    this.clearTheme();
+
+    const { button, theme } = this;
+
+    button.setAttribute("aria-selected", true);
+
+    if (theme) {
+      window.localStorage.setItem("data-color-scheme", theme);
+      document.documentElement.setAttribute("data-color-scheme", theme); // Remove if using theme files
+    }
+
+    if (link) {
+      link.removeAttribute("disabled");
+    }
+  }
+
+  get button() {
+    return (
+      this.querySelector("button") || this.shadowRoot.querySelector("button")
+    );
+  }
+
+  get label() {
+    return this.getAttribute("label");
+  }
+}
+
+customElements.define("theme-button", ThemeButton);
+
+  </script>
+
+</body>
+</html>

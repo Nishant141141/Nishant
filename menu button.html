@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>Nishant</title>
+  <title>Testing</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+<style>
+    body {
+  display: grid;
+  min-height: 90vh;
+  place-items: center;
+}
+
+.button {
+  --size: 4rem;
+
+  border: none;
+  display: grid;
+  -moz-appearance: none;
+       appearance: none;
+  -webkit-appearance: none;
+  position: relative;
+  line-height: 0;
+  box-sizing: border-box;
+  inline-size: var(--size);
+  block-size: var(--size);
+  border: calc(var(--size) / 20) solid #f2eac9;
+  border-radius: 100%;
+  color: #613fe8;
+  background: white;
+  padding: calc(var(--size) / 8);
+  transition: border-color 0.2s;
+}
+
+.button:not([disabled]) {
+  cursor: pointer;
+}
+
+.button:not([disabled]):hover {
+  border-color: #613fe8;
+}
+
+.visually-hidden {
+  clip: rect(1px, 1px, 1px, 1px);
+  inline-size: 1px;
+  block-size: 1px;
+  overflow: hidden;
+  position: absolute;
+}
+
+.button svg {
+  inline-size: 100%;
+  block-size: 100%;
+  pointer-events: none;
+}
+
+menu-button:not(:defined) {
+  display: flex;
+  gap: 1rem;
+}
+
+menu-button {
+  --rotation: 180deg;
+  position: relative;
+}
+
+menu-button:defined [slot="toggle"] {
+  z-index: 1;
+}
+
+menu-button:defined svg {
+  transform: rotate(calc((var(--rotation) + (45deg * var(--index))) / -1));
+}
+
+menu-button:defined > :not([slot="toggle"]) {
+  inset: 0;
+  position: absolute;
+  transform: rotate(calc(var(--rotation) + (45deg * var(--index)))) scale(0.99);
+  transition: transform 0.2s cubic-bezier(0.77, 0, 0.18, 1)
+      calc(var(--index, 0) * 0.05s),
+    border-color 0.2s;
+  transform-origin: 50% 50%;
+}
+
+menu-button:defined[open] > :not([slot="toggle"]) {
+  transform: rotate(calc(var(--rotation) + (45deg * var(--index))))
+    translateX(calc(-100% - 2rem));
+}
+
+</style>
+
+</head>
+<body>
+<!-- partial:index.partial.html -->
+<menu-button role="navigation">
+  <a href="#" class="button">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false">
+      <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M6.75 19.25h10.5a2 2 0 0 0 2-2v-7.5l-7.25-5-7.25 5v7.5a2 2 0 0 0 2 2Z"></path>
+      <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9.75 15.75a2 2 0 0 1 2-2h.5a2 2 0 0 1 2 2v3.5h-4.5v-3.5Z"></path>
+    </svg>
+    <span class="visually-hidden">Home</span>
+  </a>
+  <a href="#" class="button">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false">
+      <rect width="14.5" height="14.5" x="4.75" y="4.75" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" rx="2"></rect>
+      <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="m8.75 10.75 2.5 2.25-2.5 2.25"></path>
+    </svg>
+    <span class="visually-hidden">Work</span>
+  </a>
+  <a href="#" class="button">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false">
+      <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M7.75 19.25h8.5a2 2 0 0 0 2-2V9L14 4.75H7.75a2 2 0 0 0-2 2v10.5a2 2 0 0 0 2 2Z"></path>
+      <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M18 9.25h-4.25V5M9.75 15.25h4.5M9.75 12.25h4.5"></path>
+    </svg>
+    <span class="visually-hidden">Blog</span>
+  </a>
+
+  <button slot="toggle" class="button">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false">
+      <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4.75 5.75H19.25"></path>
+      <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4.75 18.25H19.25"></path>
+      <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4.75 12H19.25"></path>
+    </svg>
+    <span class="visually-hidden">Navigation</span>
+  </button>
+</menu-button>
+
+<style>
+  /* Bit of inline CSS to prevent non-interactive UI from appearing */
+  :not(:defined) button {
+    display: none
+  }
+</style>
+<!-- partial -->
+  <script>
+      const template = document.createElement("template");
+
+template.innerHTML = `
+  <slot name="toggle" id="toggle" aria-controls="popup"></slot>
+  <div aria-labelledby="toggle" id="popup" aria-hidden="true" inert>
+    <slot></slot>
+  </div>
+  <style>:host(:not([open])) ::slotted(:not([slot="toggle"])) { display: none }</style>
+`;
+
+class MenuButton extends HTMLElement {
+  constructor() {
+    super();
+    this.attachShadow({ mode: "open" });
+    this.shadowRoot.appendChild(template.content.cloneNode(true));
+  }
+
+  connectedCallback() {
+    const { toggle } = this;
+
+    toggle.setAttribute("aria-haspopup", true);
+
+    if (this.hasAttribute("open")) {
+      this.open();
+    } else {
+      this.close();
+    }
+   
+    toggle.addEventListener("click", this.handleToggle);
+    window.addEventListener("click", this.handleClose);
+    window.addEventListener("focusin", this.handleClose);
+    this.addEventListener("keydown", this.handleKeydown);
+
+    const buttons = this.querySelectorAll(":scope > :not([slot='toggle'])");
+    buttons.forEach((button, index) =>
+      button.style.setProperty("--index", index)
+    );
+  }
+
+  get toggle() {
+    return this.querySelector("button[slot='toggle']");
+  }
+
+  get popup() {
+    return this.shadowRoot.querySelector("#popup");
+  }
+
+  handleClose = (event) => {
+    if (!this.contains(event.target)) {
+      this.close();
+    }
+  };
+
+  close() {
+    const { popup, toggle } = this;
+    popup.setAttribute("aria-hidden", true);
+    toggle.setAttribute("aria-expanded", false);
+    popup.inert = true;
+    this.removeAttribute("open");
+  }
+
+  open() {
+    const { popup, toggle } = this;
+    popup.setAttribute("aria-hidden", false);
+    toggle.setAttribute("aria-expanded", true);
+    popup.inert = false;
+    this.setAttribute("open", "");
+  }
+
+  handleToggle = () => {
+    const currentState = this.popup.getAttribute("aria-hidden") == "true";
+
+    if (currentState) {
+      this.open();
+    } else {
+      this.close();
+    }
+  };
+
+  handleKeydown = (event) => {
+    if (event.key === "Escape") {
+      this.close();
+      this.toggle.focus();
+    }
+  };
+}
+
+customElements.define("menu-button", MenuButton);
+
+  </script>
+
+</body>
+</html>

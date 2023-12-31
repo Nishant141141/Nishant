@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>Nishant</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+<style>
+    body {
+  display: grid;
+  min-height: 90vh;
+  place-items: center;
+}
+
+.button {
+  --size: 4rem;
+  
+  border: none;
+  display: grid;
+  -moz-appearance: none;
+       appearance: none;
+  -webkit-appearance: none;
+  position: relative;
+  line-height: 0;
+  box-sizing: border-box;
+  inline-size: var(--size);
+  block-size: var(--size);
+  border: calc(var(--size) / 20) solid #f2eac9;
+  border-radius: 100%;
+  color: #613fe8;
+  background: white;
+  padding: calc(var(--size) / 8);
+  transition: border-color 0.2s;
+}
+
+.button:not([disabled]) {
+  cursor: pointer;
+}
+
+.button:not([disabled]):hover {
+ border-color: #613fe8;
+}
+
+.visually-hidden {
+  clip: rect(1px, 1px, 1px, 1px);
+  inline-size: 1px;
+  block-size: 1px;
+  overflow: hidden;
+  position: absolute;
+}
+
+.button svg {
+  inline-size: 100%;
+  block-size: 100%;
+  pointer-events: none;
+}
+
+david-darnes[playing] svg {
+  -webkit-animation: shake 1s infinite;
+          animation: shake 1s infinite;
+}
+
+@-webkit-keyframes shake {
+  2% {
+    transform: translate(0, 0) rotate(0.5deg);
+  }
+
+  4% {
+    transform: translate(0, 0) rotate(5.5deg);
+  }
+
+  6% {
+    transform: translate(0, 0) rotate(0.5deg);
+  }
+
+  8% {
+    transform: translate(0, 0) rotate(-5.5deg);
+  }
+
+  10% {
+    transform: translate(0, 0) rotate(0.5deg);
+  }
+
+  12% {
+    transform: translate(0, 0) rotate(2.5deg);
+  }
+
+  14% {
+    transform: translate(0, 0) rotate(5.5deg);
+  }
+
+  16% {
+    transform: translate(0, 0) rotate(-5.5deg);
+  }
+
+  18% {
+    transform: translate(0, 0) rotate(-1.5deg);
+  }
+
+  20% {
+    transform: translate(0, 0) rotate(4.5deg);
+  }
+
+  22% {
+    transform: translate(0, 0) rotate(-6.5deg);
+  }
+
+  24% {
+    transform: translate(0, 0) rotate(1.5deg);
+  }
+
+  26% {
+    transform: translate(0, 0) rotate(1.5deg);
+  }
+
+  28% {
+    transform: translate(0, 0) rotate(-4.5deg);
+  }
+
+  30% {
+    transform: translate(0, 0) rotate(5.5deg);
+  }
+
+  32% {
+    transform: translate(0, 0) rotate(2.5deg);
+  }
+
+  34% {
+    transform: translate(0, 0) rotate(3.5deg);
+  }
+
+  36% {
+    transform: translate(0, 0) rotate(-3.5deg);
+  }
+
+  38% {
+    transform: translate(0, 0) rotate(-4.5deg);
+  }
+
+  40% {
+    transform: translate(0, 0) rotate(2.5deg);
+  }
+
+  42% {
+    transform: translate(0, 0) rotate(0.5deg);
+  }
+
+  44% {
+    transform: translate(0, 0) rotate(-3.5deg);
+  }
+
+  46% {
+    transform: translate(0, 0) rotate(-4.5deg);
+  }
+
+  48% {
+    transform: translate(0, 0) rotate(-1.5deg);
+  }
+
+  50% {
+    transform: translate(0, 0) rotate(-3.5deg);
+  }
+
+  52% {
+    transform: translate(0, 0) rotate(-2.5deg);
+  }
+
+  54% {
+    transform: translate(0, 0) rotate(3.5deg);
+  }
+
+  56% {
+    transform: translate(0, 0) rotate(0.5deg);
+  }
+
+  58% {
+    transform: translate(0, 0) rotate(-6.5deg);
+  }
+
+  60% {
+    transform: translate(0, 0) rotate(-3.5deg);
+  }
+
+  62% {
+    transform: translate(0, 0) rotate(-1.5deg);
+  }
+
+  64% {
+    transform: translate(0, 0) rotate(3.5deg);
+  }
+
+  66% {
+    transform: translate(0, 0) rotate(0.5deg);
+  }
+
+  68% {
+    transform: translate(0, 0) rotate(4.5deg);
+  }
+
+  70% {
+    transform: translate(0, 0) rotate(1.5deg);
+  }
+
+  72% {
+    transform: translate(0, 0) rotate(-3.5deg);
+  }
+
+  74% {
+    transform: translate(0, 0) rotate(-3.5deg);
+  }
+
+  76% {
+    transform: translate(0, 0) rotate(2.5deg);
+  }
+
+  78% {
+    transform: translate(0, 0) rotate(-1.5deg);
+  }
+
+  80% {
+    transform: translate(0, 0) rotate(-5.5deg);
+  }
+
+  82% {
+    transform: translate(0, 0) rotate(7.5deg);
+  }
+
+  84% {
+    transform: translate(0, 0) rotate(0.5deg);
+  }
+
+  86% {
+    transform: translate(0, 0) rotate(5.5deg);
+  }
+
+  88% {
+    transform: translate(0, 0) rotate(4.5deg);
+  }
+
+  90% {
+    transform: translate(0, 0) rotate(-2.5deg);
+  }
+
+  92% {
+    transform: translate(0, 0) rotate(1.5deg);
+  }
+
+  94% {
+    transform: translate(0, 0) rotate(-5.5deg);
+  }
+
+  96% {
+    transform: translate(0, 0) rotate(7.5deg);
+  }
+
+  98% {
+    transform: translate(0, 0) rotate(-3.5deg);
+  }
+
+  0%,
+  100% {
+    transform: translate(0, 0) rotate(0);
+  }
+}
+
+@keyframes shake {
+  2% {
+    transform: translate(0, 0) rotate(0.5deg);
+  }
+
+  4% {
+    transform: translate(0, 0) rotate(5.5deg);
+  }
+
+  6% {
+    transform: translate(0, 0) rotate(0.5deg);
+  }
+
+  8% {
+    transform: translate(0, 0) rotate(-5.5deg);
+  }
+
+  10% {
+    transform: translate(0, 0) rotate(0.5deg);
+  }
+
+  12% {
+    transform: translate(0, 0) rotate(2.5deg);
+  }
+
+  14% {
+    transform: translate(0, 0) rotate(5.5deg);
+  }
+
+  16% {
+    transform: translate(0, 0) rotate(-5.5deg);
+  }
+
+  18% {
+    transform: translate(0, 0) rotate(-1.5deg);
+  }
+
+  20% {
+    transform: translate(0, 0) rotate(4.5deg);
+  }
+
+  22% {
+    transform: translate(0, 0) rotate(-6.5deg);
+  }
+
+  24% {
+    transform: translate(0, 0) rotate(1.5deg);
+  }
+
+  26% {
+    transform: translate(0, 0) rotate(1.5deg);
+  }
+
+  28% {
+    transform: translate(0, 0) rotate(-4.5deg);
+  }
+
+  30% {
+    transform: translate(0, 0) rotate(5.5deg);
+  }
+
+  32% {
+    transform: translate(0, 0) rotate(2.5deg);
+  }
+
+  34% {
+    transform: translate(0, 0) rotate(3.5deg);
+  }
+
+  36% {
+    transform: translate(0, 0) rotate(-3.5deg);
+  }
+
+  38% {
+    transform: translate(0, 0) rotate(-4.5deg);
+  }
+
+  40% {
+    transform: translate(0, 0) rotate(2.5deg);
+  }
+
+  42% {
+    transform: translate(0, 0) rotate(0.5deg);
+  }
+
+  44% {
+    transform: translate(0, 0) rotate(-3.5deg);
+  }
+
+  46% {
+    transform: translate(0, 0) rotate(-4.5deg);
+  }
+
+  48% {
+    transform: translate(0, 0) rotate(-1.5deg);
+  }
+
+  50% {
+    transform: translate(0, 0) rotate(-3.5deg);
+  }
+
+  52% {
+    transform: translate(0, 0) rotate(-2.5deg);
+  }
+
+  54% {
+    transform: translate(0, 0) rotate(3.5deg);
+  }
+
+  56% {
+    transform: translate(0, 0) rotate(0.5deg);
+  }
+
+  58% {
+    transform: translate(0, 0) rotate(-6.5deg);
+  }
+
+  60% {
+    transform: translate(0, 0) rotate(-3.5deg);
+  }
+
+  62% {
+    transform: translate(0, 0) rotate(-1.5deg);
+  }
+
+  64% {
+    transform: translate(0, 0) rotate(3.5deg);
+  }
+
+  66% {
+    transform: translate(0, 0) rotate(0.5deg);
+  }
+
+  68% {
+    transform: translate(0, 0) rotate(4.5deg);
+  }
+
+  70% {
+    transform: translate(0, 0) rotate(1.5deg);
+  }
+
+  72% {
+    transform: translate(0, 0) rotate(-3.5deg);
+  }
+
+  74% {
+    transform: translate(0, 0) rotate(-3.5deg);
+  }
+
+  76% {
+    transform: translate(0, 0) rotate(2.5deg);
+  }
+
+  78% {
+    transform: translate(0, 0) rotate(-1.5deg);
+  }
+
+  80% {
+    transform: translate(0, 0) rotate(-5.5deg);
+  }
+
+  82% {
+    transform: translate(0, 0) rotate(7.5deg);
+  }
+
+  84% {
+    transform: translate(0, 0) rotate(0.5deg);
+  }
+
+  86% {
+    transform: translate(0, 0) rotate(5.5deg);
+  }
+
+  88% {
+    transform: translate(0, 0) rotate(4.5deg);
+  }
+
+  90% {
+    transform: translate(0, 0) rotate(-2.5deg);
+  }
+
+  92% {
+    transform: translate(0, 0) rotate(1.5deg);
+  }
+
+  94% {
+    transform: translate(0, 0) rotate(-5.5deg);
+  }
+
+  96% {
+    transform: translate(0, 0) rotate(7.5deg);
+  }
+
+  98% {
+    transform: translate(0, 0) rotate(-3.5deg);
+  }
+
+  0%,
+  100% {
+    transform: translate(0, 0) rotate(0);
+  }
+}
+
+</style>
+
+</head>
+<body>
+<!-- partial:index.partial.html -->
+<david-darnes>
+  <button class="button">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false">
+      <g fill-rule="evenodd" stroke="currentColor" stroke-width="1.5">
+        <path d="M18.676 8.536c.567 2.67-.278 5.427-1.599 5.707s-3.214-1.894-3.781-4.563c-.567-2.67.278-5.426 1.598-5.707s3.214 1.894 3.782 4.563z"></path>
+        <path d="M17.077 14.243s-8.678.056-9.708.02-2.525-1.06-2.876-2.712C4.14 9.9 5.092 8.357 6.018 7.904s8.876-3.931 8.876-3.931M7.177 14.559l.78 3.668a2 2 0 0 0 2.371 1.54l.49-.104a2 2 0 0 0 1.54-2.372l-.572-2.69"></path>
+      </g>
+    </svg>
+    <span class="visually-hidden">Pronounce 'David Darnes'</span>
+  </button>
+  <audio controls preload src="https://darn.es/sounds/daviddarnes.m4a"></audio>
+</david-darnes>
+
+<david-darnes variant="reboot">
+  <button class="button">
+    <svg width="24" height="24" viewBox="0 0 24 25" fill="none" aria-hidden="true" focusable="false">
+      <path stroke="#c30" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="m4.952 16.354 5.263-10.497c.738-1.472 2.839-1.472 3.576 0l5.258 10.497a2 2 0 0 1-1.788 2.896H6.741a2 2 0 0 1-1.789-2.896Z"></path>
+      <path stroke="#c30" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v2"></path>
+      <circle fill="#c30" cx="12" cy="16" r="1"></circle>
+    </svg>
+    <span class="visually-hidden">Reboot</span>
+  </button>
+  <audio controls preload src="https://darn.es/sounds/reboot.m4a"></audio>
+</david-darnes>
+
+<david-darnes variant="playback">
+  <button class="button">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false">
+      <g fill-rule="evenodd" stroke="currentColor" stroke-width="1.5">
+        <path d="M18.676 8.536c.567 2.67-.278 5.427-1.599 5.707s-3.214-1.894-3.781-4.563c-.567-2.67.278-5.426 1.598-5.707s3.214 1.894 3.782 4.563z"></path>
+        <path d="M17.077 14.243s-8.678.056-9.708.02-2.525-1.06-2.876-2.712C4.14 9.9 5.092 8.357 6.018 7.904s8.876-3.931 8.876-3.931M7.177 14.559l.78 3.668a2 2 0 0 0 2.371 1.54l.49-.104a2 2 0 0 0 1.54-2.372l-.572-2.69"></path>
+      </g>
+    </svg>
+    <span class="visually-hidden">Pronounce 'David Darnes'</span>
+  </button>
+  <audio controls preload src="https://darn.es/sounds/daviddarnes.m4a"></audio>
+</david-darnes>
+
+<style>
+  /* Bit of inline CSS to prevent non-interactive UI from appearing */
+  :not(:defined) button {
+    display: none
+  }
+</style>
+<!-- partial -->
+  <script>
+    const template = document.createElement("template");
+
+template.innerHTML = `
+  <slot></slot>
+  <style>::slotted(audio) { display: none !important }</style>
+`;
+
+class DavidDarnes extends HTMLElement {
+  url = "https://darn.es";
+
+  constructor() {
+    super();
+    this.attachShadow({ mode: "open" });
+    this.shadowRoot.appendChild(template.content.cloneNode(true));
+  }
+
+  connectedCallback() {
+    this.button.addEventListener("click", () => this.audio.play());
+    this.audio.addEventListener("play", this.handlePlay);
+    this.audio.addEventListener("ended", this.handleEnd);
+  }
+
+  handlePlay = () => {
+    this.setAttribute("playing", "");
+    this.button.setAttribute("disabled", "");
+  };
+
+  handleEnd = () => {
+    this.button.removeAttribute("disabled");
+    this.removeAttribute("playing");
+
+    if (this.variant !== "playback") {
+      this.fetchAudio().then((audioFile) => {
+        if (audioFile) this.audio.setAttribute("src", audioFile);
+      });
+    }
+  };
+
+  get variant() {
+    return this.getAttribute("variant");
+  }
+
+  get button() {
+    return this.querySelector("button");
+  }
+
+  get audio() {
+    return this.querySelector("audio");
+  }
+
+  fetchAudio = async () => {
+    let endpoint = this.url + "/audio";
+    if (this.variant == "reboot") {
+      endpoint = endpoint + "?reboot=true";
+    }
+
+    return fetch(endpoint)
+      .then(async (response) => {
+        return response
+          .json()
+          .then((data) => this.url + data)
+          .catch(() => false);
+      })
+      .catch(() => false);
+  };
+}
+
+customElements.define("david-darnes", DavidDarnes);
+ 
+  </script>
+
+</body>
+</html>

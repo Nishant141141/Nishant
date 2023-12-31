@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>Nishant</title>
+  <link rel="stylesheet" href="./style.css">
+<style>
+    body {
+	background:#1d233b;
+	color: #fff;
+}
+
+.notation-322f9 {
+  cursor: default;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 14px;
+  position: absolute;
+}
+
+.board {
+  font-family: 'Montserrat', sans-serif;
+  width: 400px;
+  margin: auto
+}
+
+.info {
+  font-family: 'Montserrat', sans-serif;
+  width: 400px;
+  margin: auto;
+}
+
+.move-history {
+  font-family: 'Montserrat', sans-serif;
+  max-height: 100px;
+  overflow-y: scroll;
+}
+
+.board-b72b1 {
+  border: 2px solid #404040;
+  -moz-box-sizing: content-box;
+  box-sizing: content-box;
+}
+
+.square-55d63 {
+  float: left;
+  position: relative;
+
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+
+.black-3c85d {
+  background-color: #b58863;
+  color: #f0d9b5;
+}
+
+.white-1e1d7 {
+  background-color: #f0d9b5;
+  color: #b58863;
+}
+
+
+.clearfix-7da63 {
+  clear: both;
+}
+
+.highlight1-32417,
+.highlight2-9c5d2 {
+  -webkit-box-shadow: inset 0 0 3px 3px aquamarine;
+  -moz-box-shadow: inset 0 0 3px 3px aquamarine;
+  box-shadow: inset 0 0 3px 3px aquamarine;
+}
+
+.alpha-d2270 {
+  bottom: 1px;
+  right: 3px;
+}
+
+.numeric-fc462 {
+  top: 2px;
+  left: 2px;
+}
+
+</style>
+</head>
+<body>
+<!-- partial:index.partial.html -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js"></script>
+  <script type="text/javascript" src="https://cdn.rawgit.com/lhartikk/simple-chess-ai/master/lib/js/chess.js"></script>
+  <script type="text/javascript" src="https://chessboardjs.com/js/chessboard.js"></script>
+<base href="http://chessboardjs.com/">
+<!-- Importing Montserrat font from Google fonts. -->
+<link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+<h3 class="board">
+  Artificial Intelligence (AI) Chess Bot
+</h3>
+<div id="board" class="board"><div class="chessboard-63f37"><div class="board-b72b1" style="width: 392px;"><div class="row-5277c"><div class="square-55d63 white-1e1d7 square-a8" style="width:49px;height:49px;" id="a8-8dc2-554a-6e77-f7d7-de81-1cc2-7a50-26e8" data-square="a8"><div class="notation-322f9 numeric-fc462">8</div><img src="img/chesspieces/wikipedia/bR.png" alt="" class="piece-417db" data-piece="bR" style="width:49px;height:49px;"></div><div class="square-55d63 black-3c85d square-b8" style="width:49px;height:49px;" id="b8-3235-f034-226c-ff1a-1112-820a-0b93-0656" data-square="b8"><img src="img/chesspieces/wikipedia/bN.png" alt="" class="piece-417db" data-piece="bN" style="width:49px;height:49px;"></div><div class="square-55d63 white-1e1d7 square-c8" style="width:49px;height:49px;" id="c8-0482-c0f0-66b0-54b9-c500-cfdc-47b7-b7f4" data-square="c8"><img src="img/chesspieces/wikipedia/bB.png" alt="" class="piece-417db" data-piece="bB" style="width:49px;height:49px;"></div><div class="square-55d63 black-3c85d square-d8" style="width:49px;height:49px;" id="d8-e842-de0f-dae9-b400-47a6-0f19-7121-f99e" data-square="d8"></div><div class="square-55d63 white-1e1d7 square-e8" style="width:49px;height:49px;" id="e8-cea6-be09-4f79-0a53-d187-d2e7-87bc-28b8" data-square="e8"><img src="img/chesspieces/wikipedia/bK.png" alt="" class="piece-417db" data-piece="bK" style="width:49px;height:49px;"></div><div class="square-55d63 black-3c85d square-f8" style="width:49px;height:49px;" id="f8-1d43-639b-e180-6fe3-35f8-72da-4958-15c0" data-square="f8"><img src="img/chesspieces/wikipedia/bB.png" alt="" class="piece-417db" data-piece="bB" style="width:49px;height:49px;"></div><div class="square-55d63 white-1e1d7 square-g8" style="width: 49px; height: 49px;" id="g8-870e-6e31-df05-0c69-d29a-5fb4-a426-48eb" data-square="g8"><img src="img/chesspieces/wikipedia/bR.png" alt="" class="piece-417db" data-piece="bR" style="width:49px;height:49px;"></div><div class="square-55d63 black-3c85d square-h8" style="width: 49px; height: 49px;" id="h8-bd85-9707-e3d6-642c-4187-e370-3c9b-7829" data-square="h8"></div><div class="clearfix-7da63"></div></div><div class="row-5277c"><div class="square-55d63 black-3c85d square-a7" style="width: 49px; height: 49px;" id="a7-9223-5663-cef7-865a-94c4-7eed-a832-2eed" data-square="a7"><div class="notation-322f9 numeric-fc462">7</div><img src="img/chesspieces/wikipedia/bP.png" alt="" class="piece-417db" data-piece="bP" style="width:49px;height:49px;"></div><div class="square-55d63 white-1e1d7 square-b7" style="width:49px;height:49px;" id="b7-d0cf-4e14-94ed-cd44-4ece-44e1-1504-4888" data-square="b7"><img src="img/chesspieces/wikipedia/bP.png" alt="" class="piece-417db" data-piece="bP" style="width:49px;height:49px;"></div><div class="square-55d63 black-3c85d square-c7" style="width:49px;height:49px;" id="c7-b05c-6283-b328-871b-fa99-4613-3631-b3ed" data-square="c7"><img src="img/chesspieces/wikipedia/bP.png" alt="" class="piece-417db" data-piece="bP" style="width:49px;height:49px;"></div><div class="square-55d63 white-1e1d7 square-d7" style="width: 49px; height: 49px;" id="d7-8dc8-ac67-bfbc-e923-8eed-4edd-d925-bcb7" data-square="d7"><img src="img/chesspieces/wikipedia/bP.png" alt="" class="piece-417db" data-piece="bP" style="width:49px;height:49px;"></div><div class="square-55d63 black-3c85d square-e7" style="width:49px;height:49px;" id="e7-0d68-8ed2-13d5-2add-6564-ab40-8dc0-1041" data-square="e7"></div><div class="square-55d63 white-1e1d7 square-f7" style="width: 49px; height: 49px;" id="f7-35b1-e064-b82b-71af-ca78-6edc-bd3d-a288" data-square="f7"></div><div class="square-55d63 black-3c85d square-g7" style="width: 49px; height: 49px;" id="g7-f8eb-21cb-a308-d2fa-2320-5faa-b90c-807b" data-square="g7"></div><div class="square-55d63 white-1e1d7 square-h7" style="width:49px;height:49px;" id="h7-b7e4-e465-dd5f-cfe4-5d81-6a4d-bbb5-e1d9" data-square="h7"></div><div class="clearfix-7da63"></div></div><div class="row-5277c"><div class="square-55d63 white-1e1d7 square-a6" style="width: 49px; height: 49px;" id="a6-7ca7-955b-4a6c-efa5-e0e3-eb57-d211-16c3" data-square="a6"><div class="notation-322f9 numeric-fc462">6</div></div><div class="square-55d63 black-3c85d square-b6" style="width: 49px; height: 49px;" id="b6-c45a-e60c-0b09-d5de-92da-712f-d718-f9ff" data-square="b6"></div><div class="square-55d63 white-1e1d7 square-c6" style="width:49px;height:49px;" id="c6-38e3-38d3-e3d4-3413-1f5e-5716-4967-f630" data-square="c6"></div><div class="square-55d63 black-3c85d square-d6" style="width: 49px; height: 49px;" id="d6-7cb7-3aa8-f79e-e495-ebea-6348-c2df-871e" data-square="d6"></div><div class="square-55d63 white-1e1d7 square-e6" style="width: 49px; height: 49px;" id="e6-dd40-7cf5-67e6-3462-0602-68d1-6030-d928" data-square="e6"></div><div class="square-55d63 black-3c85d square-f6" style="width: 49px; height: 49px;" id="f6-c100-5760-813d-c03e-3980-c0d6-9433-f6d6" data-square="f6"></div><div class="square-55d63 white-1e1d7 square-g6" style="width:49px;height:49px;" id="g6-6400-2d9d-b620-07c4-1dae-957f-5207-f1d6" data-square="g6"></div><div class="square-55d63 black-3c85d square-h6" style="width:49px;height:49px;" id="h6-8b69-3099-c7fc-fdb3-5053-0c6d-e344-08f4" data-square="h6"></div><div class="clearfix-7da63"></div></div><div class="row-5277c"><div class="square-55d63 black-3c85d square-a5" style="width:49px;height:49px;" id="a5-b831-ef8e-fda3-1b45-c48c-84c0-ee13-d02f" data-square="a5"><div class="notation-322f9 numeric-fc462">5</div></div><div class="square-55d63 white-1e1d7 square-b5" style="width: 49px; height: 49px;" id="b5-5cb3-0b89-e4e0-4d30-5182-4e65-587a-5628" data-square="b5"></div><div class="square-55d63 black-3c85d square-c5" style="width: 49px; height: 49px;" id="c5-27cc-17ee-9280-ecfb-3ad6-b888-78af-edf8" data-square="c5"></div><div class="square-55d63 white-1e1d7 square-d5" style="width: 49px; height: 49px;" id="d5-f574-2ef5-c382-ffdb-553f-b5fa-bb29-9179" data-square="d5"></div><div class="square-55d63 black-3c85d square-e5" style="width: 49px; height: 49px;" id="e5-6ad2-61a8-7933-67a6-d0fb-e4fd-a3e5-9f5e" data-square="e5"></div><div class="square-55d63 white-1e1d7 square-f5" style="width:49px;height:49px;" id="f5-a843-e948-2fdc-05bc-fb2b-0921-182a-78bb" data-square="f5"></div><div class="square-55d63 black-3c85d square-g5" style="width: 49px; height: 49px;" id="g5-1846-adb8-399b-3fd1-af48-c612-a13b-b623" data-square="g5"><img src="img/chesspieces/wikipedia/bP.png" alt="" class="piece-417db" data-piece="bP" style="width:49px;height:49px;"></div><div class="square-55d63 white-1e1d7 square-h5" style="width:49px;height:49px;" id="h5-4715-6272-8200-c049-4f5e-9195-4f78-d698" data-square="h5"></div><div class="clearfix-7da63"></div></div><div class="row-5277c"><div class="square-55d63 white-1e1d7 square-a4" style="width: 49px; height: 49px;" id="a4-1783-e11f-d4ac-0494-d5cb-e8d4-d6f6-e997" data-square="a4"><div class="notation-322f9 numeric-fc462">4</div></div><div class="square-55d63 black-3c85d square-b4" style="width: 49px; height: 49px;" id="b4-59b3-1581-cc02-e8d8-039d-fab5-1b8c-d4c7" data-square="b4"></div><div class="square-55d63 white-1e1d7 square-c4" style="width: 49px; height: 49px;" id="c4-7c56-a5b8-01c5-8e0e-5844-36ca-cd42-26c8" data-square="c4"></div><div class="square-55d63 black-3c85d square-d4" style="width: 49px; height: 49px;" id="d4-d42d-6954-3741-8841-1abd-515f-5ce2-13b5" data-square="d4"></div><div class="square-55d63 white-1e1d7 square-e4" style="width: 49px; height: 49px;" id="e4-b292-aa3f-7803-e9d1-1be8-b05c-e7f2-8bfa" data-square="e4"></div><div class="square-55d63 black-3c85d square-f4" style="width: 49px; height: 49px;" id="f4-28d1-8848-b892-55b1-c7a0-f0a9-506b-f777" data-square="f4"></div><div class="square-55d63 white-1e1d7 square-g4" style="width: 49px; height: 49px;" id="g4-13f2-d344-4a4a-d762-1481-af59-6549-37bd" data-square="g4"><img src="img/chesspieces/wikipedia/wQ.png" alt="" class="piece-417db" data-piece="wQ" style="width:49px;height:49px;"></div><div class="square-55d63 black-3c85d square-h4" style="width: 49px; height: 49px;" id="h4-e778-ea50-d4c4-548d-a7bb-46f0-41c4-6f01" data-square="h4"></div><div class="clearfix-7da63"></div></div><div class="row-5277c"><div class="square-55d63 black-3c85d square-a3" style="width:49px;height:49px;" id="a3-7fc7-41de-cfd0-07fb-231d-6b71-330b-0b49" data-square="a3"><div class="notation-322f9 numeric-fc462">3</div></div><div class="square-55d63 white-1e1d7 square-b3" style="width: 49px; height: 49px;" id="b3-a8b5-c85d-ebda-8f81-4a63-b031-def3-84d5" data-square="b3"></div><div class="square-55d63 black-3c85d square-c3" style="width: 49px; height: 49px;" id="c3-721e-4a30-487d-a728-43c6-f325-6201-f6d2" data-square="c3"><img src="img/chesspieces/wikipedia/wP.png" alt="" class="piece-417db" data-piece="wP" style="width:49px;height:49px;"></div><div class="square-55d63 white-1e1d7 square-d3" style="width: 49px; height: 49px;" id="d3-8244-7ca1-da76-fab9-7497-d61a-3a00-8549" data-square="d3"></div><div class="square-55d63 black-3c85d square-e3" style="width: 49px; height: 49px;" id="e3-5758-4132-2391-1efc-c4b5-b15d-c4fb-e536" data-square="e3"><img src="img/chesspieces/wikipedia/wP.png" alt="" class="piece-417db" data-piece="wP" style="width:49px;height:49px;"></div><div class="square-55d63 white-1e1d7 square-f3" style="width: 49px; height: 49px;" id="f3-0110-fef3-b001-b894-dc88-caee-a29d-2512" data-square="f3"><img src="img/chesspieces/wikipedia/wN.png" alt="" class="piece-417db" data-piece="wN" style="width:49px;height:49px;"></div><div class="square-55d63 black-3c85d square-g3" style="width: 49px; height: 49px;" id="g3-1f6f-8382-99e3-2a61-7903-0b24-1274-aaf7" data-square="g3"></div><div class="square-55d63 white-1e1d7 square-h3" style="width: 49px; height: 49px;" id="h3-f667-b133-b19b-7078-5b0a-3e3c-fe23-9b18" data-square="h3"><img src="img/chesspieces/wikipedia/wP.png" alt="" class="piece-417db" data-piece="wP" style="width:49px;height:49px;"></div><div class="clearfix-7da63"></div></div><div class="row-5277c"><div class="square-55d63 white-1e1d7 square-a2" style="width:49px;height:49px;" id="a2-e7bd-be74-0d53-b64a-ecbc-29c8-4062-2d62" data-square="a2"><div class="notation-322f9 numeric-fc462">2</div><img src="img/chesspieces/wikipedia/wP.png" alt="" class="piece-417db" data-piece="wP" style="width:49px;height:49px;"></div><div class="square-55d63 black-3c85d square-b2" style="width:49px;height:49px;" id="b2-86d1-18f4-7ffa-20c1-8786-5d30-1d1e-751c" data-square="b2"><img src="img/chesspieces/wikipedia/wP.png" alt="" class="piece-417db" data-piece="wP" style="width:49px;height:49px;"></div><div class="square-55d63 white-1e1d7 square-c2" style="width: 49px; height: 49px;" id="c2-c018-ea6c-4734-dfcb-2787-2828-cc01-9446" data-square="c2"><img src="img/chesspieces/wikipedia/bQ.png" alt="" class="piece-417db" data-piece="bQ" style="width:49px;height:49px;"></div><div class="square-55d63 black-3c85d square-d2" style="width: 49px; height: 49px;" id="d2-8bee-5b24-a695-adcb-a9c3-3fb9-06a4-a118" data-square="d2"></div><div class="square-55d63 white-1e1d7 square-e2" style="width: 49px; height: 49px;" id="e2-616c-687b-5b4c-4d34-2818-8c41-7750-0cc1" data-square="e2"></div><div class="square-55d63 black-3c85d square-f2" style="width: 49px; height: 49px;" id="f2-b331-8fd1-4e2f-8c75-e52a-0681-7ead-94a7" data-square="f2"><img src="img/chesspieces/wikipedia/wK.png" alt="" class="piece-417db" data-piece="wK" style="width:49px;height:49px;"></div><div class="square-55d63 white-1e1d7 square-g2" style="width: 49px; height: 49px;" id="g2-e022-f55e-1c2c-fddd-46e3-862c-f513-4e84" data-square="g2"></div><div class="square-55d63 black-3c85d square-h2" style="width: 49px; height: 49px;" id="h2-b245-0445-8ae3-30a8-c668-37fa-6791-e4a9" data-square="h2"></div><div class="clearfix-7da63"></div></div><div class="row-5277c"><div class="square-55d63 black-3c85d square-a1" style="width:49px;height:49px;" id="a1-45f5-957b-5d69-8dc6-157e-d33f-974f-546d" data-square="a1"><div class="notation-322f9 alpha-d2270">a</div><div class="notation-322f9 numeric-fc462">1</div><img src="img/chesspieces/wikipedia/wR.png" alt="" class="piece-417db" data-piece="wR" style="width:49px;height:49px;"></div><div class="square-55d63 white-1e1d7 square-b1" style="width:49px;height:49px;" id="b1-557b-853d-25aa-97d5-7e18-4626-95fa-04e6" data-square="b1"><div class="notation-322f9 alpha-d2270">b</div><img src="img/chesspieces/wikipedia/wN.png" alt="" class="piece-417db" data-piece="wN" style="width:49px;height:49px;"></div><div class="square-55d63 black-3c85d square-c1" style="width:49px;height:49px;" id="c1-4dd7-98c4-1202-653b-d663-21d4-7124-f11c" data-square="c1"><div class="notation-322f9 alpha-d2270">c</div><img src="img/chesspieces/wikipedia/wB.png" alt="" class="piece-417db" data-piece="wB" style="width:49px;height:49px;"></div><div class="square-55d63 white-1e1d7 square-d1" style="width: 49px; height: 49px;" id="d1-92b3-020a-fde5-a996-c2f2-aaea-b5c6-81e1" data-square="d1"><div class="notation-322f9 alpha-d2270">d</div></div><div class="square-55d63 black-3c85d square-e1" style="width: 49px; height: 49px;" id="e1-b81c-659b-be59-769a-77e4-14d2-2d59-7707" data-square="e1"><div class="notation-322f9 alpha-d2270">e</div></div><div class="square-55d63 white-1e1d7 square-f1" style="width: 49px; height: 49px;" id="f1-d1a6-1c07-25df-6af2-bb1a-ea8f-47c2-8edf" data-square="f1"><div class="notation-322f9 alpha-d2270">f</div></div><div class="square-55d63 black-3c85d square-g1" style="width: 49px; height: 49px;" id="g1-6120-ae34-daa5-cdd7-a25a-b0ce-b211-f5f8" data-square="g1"><div class="notation-322f9 alpha-d2270">g</div></div><div class="square-55d63 white-1e1d7 square-h1" style="width:49px;height:49px;" id="h1-39bb-8158-28b4-c2c4-7905-09cc-c19b-8384" data-square="h1"><div class="notation-322f9 alpha-d2270">h</div><img src="img/chesspieces/wikipedia/wR.png" alt="" class="piece-417db" data-piece="wR" style="width:49px;height:49px;"></div><div class="clearfix-7da63"></div></div></div></div></div>
+<br>
+<div class="info">
+  Search depth:
+  <select id="search-depth">
+    <option value="1">1</option>
+    <option value="2">2</option>
+    <option value="3" selected="">3</option>
+    <option value="4">4</option>
+    <option value="5">5</option>
+  </select>
+
+  <br>
+  <span>Positions evaluated: <span id="position-count">7041</span></span>
+  <br>
+  <span>Time: <span id="time">0.434s</span></span>
+  <br>
+  <span>Positions/s: <span id="positions-per-s">16223.502304147465</span> </span>
+  <br>
+  <br>
+  <div id="move-history" class="move-history"><span></span><br><span></span><br><span> </span><br><span></span><br><span></span><br><span></span><br><span></span><br><span></span><br><span></span><br><span></span><br><span></span><br><span></span><br><span></span><br></div>
+</div>
+
+
+    <script type="text/javascript">//<![CDATA[
+
+
+var board,
+  game = new Chess();
+
+/* Minimax algorithm with alpha-beta pruning. */
+
+var minimaxRoot = function(depth, game, isMaximisingPlayer) {
+
+  var newGameMoves = game.ugly_moves();
+  var bestMove = -9999;
+  var bestMoveFound;
+
+  for (var i = 0; i < newGameMoves.length; i++) {
+    var newGameMove = newGameMoves[i]
+    game.ugly_move(newGameMove);
+    var value = minimax(depth - 1, game, -10000, 10000, !isMaximisingPlayer);
+    game.undo();
+    if (value >= bestMove) {
+      bestMove = value;
+      bestMoveFound = newGameMove;
+    }
+  }
+  return bestMoveFound;
+};
+
+var minimax = function(depth, game, alpha, beta, isMaximisingPlayer) {
+  positionCount++;
+  if (depth === 0) {
+    return -evaluateBoard(game.board());
+  }
+
+  var newGameMoves = game.ugly_moves();
+
+  if (isMaximisingPlayer) {
+    var bestMove = -9999;
+    for (var i = 0; i < newGameMoves.length; i++) {
+      game.ugly_move(newGameMoves[i]);
+      bestMove = Math.max(bestMove, minimax(depth - 1, game, alpha, beta, !isMaximisingPlayer));
+      game.undo();
+      alpha = Math.max(alpha, bestMove);
+      if (beta <= alpha) {
+        return bestMove;
+      }
+    }
+    return bestMove;
+  } else {
+    var bestMove = 9999;
+    for (var i = 0; i < newGameMoves.length; i++) {
+      game.ugly_move(newGameMoves[i]);
+      bestMove = Math.min(bestMove, minimax(depth - 1, game, alpha, beta, !isMaximisingPlayer));
+      game.undo();
+      beta = Math.min(beta, bestMove);
+      if (beta <= alpha) {
+        return bestMove;
+      }
+    }
+    return bestMove;
+  }
+};
+
+var evaluateBoard = function(board) {
+  var totalEvaluation = 0;
+  for (var i = 0; i < 8; i++) {
+    for (var j = 0; j < 8; j++) {
+      totalEvaluation = totalEvaluation + getPieceValue(board[i][j], i, j);
+    }
+  }
+  return totalEvaluation;
+};
+
+
+
+var getPieceValue = function(piece, x, y) {
+  if (piece === null) {
+    return 0;
+  }
+  var getAbsoluteValue = function(piece) {
+    if (piece.type === 'p') {
+      return 10;
+    } else if (piece.type === 'r') {
+      return 50;
+    } else if (piece.type === 'n') {
+      return 30;
+    } else if (piece.type === 'b') {
+      return 30;
+    } else if (piece.type === 'q') {
+      return 90;
+    } else if (piece.type === 'k') {
+      return 900;
+    }
+  };
+
+  var absoluteValue = getAbsoluteValue(piece);
+  return piece.color === 'w' ? absoluteValue : -absoluteValue;
+};
+
+var onDragStart = function(source, piece, position, orientation) {
+  if (game.in_checkmate() === true || game.in_draw() === true ||
+    piece.search(/^b/) !== -1) {
+    return false;
+  }
+};
+
+var makeBestMove = function() {
+  var bestMove = getBestMove(game);
+  game.ugly_move(bestMove);
+  board.position(game.fen());
+  renderMoveHistory(game.history());
+  if (game.game_over()) {
+    alert('Game over');
+  }
+};
+
+
+var positionCount;
+var getBestMove = function(game) {
+  if (game.game_over()) {
+    alert('Game over');
+  }
+
+  positionCount = 0;
+  var depth = parseInt($('#search-depth').find(':selected').text());
+
+  var d = new Date().getTime();
+  var bestMove = minimaxRoot(depth, game, true);
+  var d2 = new Date().getTime();
+  var moveTime = (d2 - d);
+  var positionsPerS = (positionCount * 1000 / moveTime);
+
+  $('#position-count').text(positionCount);
+  $('#time').text(moveTime / 1000 + 's');
+  $('#positions-per-s').text(positionsPerS);
+  return bestMove;
+};
+
+var renderMoveHistory = function(moves) {
+  var historyElement = $('#move-history').empty();
+  historyElement.empty();
+  for (var i = 0; i < moves.length; i = i + 2) {
+    historyElement.append('<span>' + moves[i] + ' ' + (moves[i + 1] ? moves[i + 1] : ' ') + '</span><br>')
+  }
+  historyElement.scrollTop(historyElement[0].scrollHeight);
+
+};
+
+var onDrop = function(source, target) {
+
+  var move = game.move({
+    from: source,
+    to: target,
+    promotion: 'q'
+  });
+
+  removeGreySquares();
+  if (move === null) {
+    return 'snapback';
+  }
+
+  renderMoveHistory(game.history());
+  window.setTimeout(makeBestMove, 250);
+};
+
+var onSnapEnd = function() {
+  board.position(game.fen());
+};
+
+var onMouseoverSquare = function(square, piece) {
+  var moves = game.moves({
+    square: square,
+    verbose: true
+  });
+
+  if (moves.length === 0) return;
+
+  greySquare(square);
+
+  for (var i = 0; i < moves.length; i++) {
+    greySquare(moves[i].to);
+  }
+};
+
+var onMouseoutSquare = function(square, piece) {
+  removeGreySquares();
+};
+
+var removeGreySquares = function() {
+  $('#board .square-55d63').css('background', '');
+};
+
+var greySquare = function(square) {
+  var squareEl = $('#board .square-' + square);
+
+  var background = '#a9a9a9';
+  if (squareEl.hasClass('black-3c85d') === true) {
+    background = '#696969';
+  }
+
+  squareEl.css('background', background);
+};
+
+var cfg = {
+  draggable: true,
+  position: 'start',
+  onDragStart: onDragStart,
+  onDrop: onDrop,
+  onMouseoutSquare: onMouseoutSquare,
+  onMouseoverSquare: onMouseoverSquare,
+  onSnapEnd: onSnapEnd
+};
+board = ChessBoard('board', cfg);
+
+
+
+  //]]></script><img src="img/chesspieces/wikipedia/wK.png" id="7fff-d8df-d730-b31c-6e55-4d35-fe25-2ad1" alt="" class="piece-417db" data-piece="wP" style="width: 49px; height: 49px; position: absolute; left: 312px; top: 326.5px; display: none;">
+
+  <script>
+    // tell the embed parent frame the height of the content
+    if (window.parent && window.parent.parent){
+      window.parent.parent.postMessage(["resultsFrame", {
+        height: document.body.getBoundingClientRect().height,
+        slug: "L462z5jt"
+      }], "*")
+    }
+
+    // always overwrite window.name, in case users try to set it manually
+    window.name = "result"
+  </script>
+
+    <script>
+      let allLines = []
+
+      window.addEventListener("message", (message) => {
+        if (message.data.console){
+          let insert = document.querySelector("#insert")
+          allLines.push(message.data.console.payload)
+          insert.innerHTML = allLines.join(";\r")
+
+          let result = eval.call(null, message.data.console.payload)
+          if (result !== undefined){
+            console.log(result)
+          }
+        }
+      })
+    </script>
+
+
+
+</body></html>
+<!-- partial -->
+  
+</body>
+</html>
